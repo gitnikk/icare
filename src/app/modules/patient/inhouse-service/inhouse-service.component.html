@@ -1,0 +1,163 @@
+<div id="sign-in-button"></div>
+
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12 col-lg-12">
+<div class="iq-card">
+  <div class="iq-card-header d-flex justify-content-between">
+    <div class="iq-header-title">
+      <h4 class="card-title">{{ serviceTitle }}</h4>
+    </div>
+  </div>
+  <div class="iq-card-body">
+    <form class="form" [formGroup]="myForm"  novalidate>
+    <div class="row" >
+      <div class="col-sm-12">
+        <div class="col-md-12 p-0">
+
+        <div class="row" [hidden]="otpSent">
+          <div class="form-group col-sm-6">
+            <label class="control-label">First Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="firstName"
+                [class.is-invalid]="isSubmitted && myFormData.firstName.errors" />
+            <div class="invalid-feedback">
+              {{ getErrorMessage('firstName') }}
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="control-label">Last Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="lastName" 
+              [class.is-invalid]="isSubmitted && myFormData.lastName.errors" />
+            <div class="invalid-feedback">
+              {{ getErrorMessage('lastName') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row" [hidden]="otpSent">
+          <div class="form-group col-sm-6">
+            <label class="control-label">Mobile No <span class="text-danger">*</span></label>
+            <input type="text" [pattern]="mobNumberPattern" class="form-control" formControlName="mobileNumber"
+              [class.is-invalid]="isSubmitted && myFormData.mobileNumber.errors" />
+            <div class="invalid-feedback" >
+              {{ getErrorMessage('mobileNumber') }}
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="control-label">Email </label>
+            <input type="email" class="form-control" formControlName="email"
+              [class.is-invalid]="isSubmitted && myFormData.email.errors" />
+            <div class="invalid-feedback" >
+              {{ getErrorMessage('email') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row" [hidden]="otpSent">
+          <div class="form-group col-sm-6">
+            <label class="control-label">Birth Date <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" formControlName="dob"
+              [class.is-invalid]="isSubmitted && myFormData.dob.errors" />
+            <div class="invalid-feedback">
+              {{ getErrorMessage('dob') }}
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Speciality:</label>
+            <select class="form-control form-control-lg" 
+              [ngClass]="{ 'is-invalid': isSubmittedStep1 && myFormData.serviceCategory.errors }" 
+              formControlName="serviceCategory">
+                <option value="" disabled>Select Category</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+            <div class="invalid-feedback">
+              {{ getErrorMessage('service-category') }}
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="row" [hidden]="otpSent">
+          <div class="form-group col-sm-6">
+            <label class="control-label">State </label>
+            <input type="text" class="form-control" formControlName="state"
+              [class.is-invalid]="isSubmitted && myFormData.state.errors" />
+            <div class="invalid-feedback">
+              {{ getErrorMessage('state') }}
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="control-label">City </label>
+            <input type="text" class="form-control" formControlName="city"
+            [class.is-invalid]="isSubmitted && myFormData.city.errors" />
+            <div class="invalid-feedback" >
+              {{ getErrorMessage('city') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row" [hidden]="otpSent">
+          <div class="form-group col-sm-12">
+            <label class="control-label">Note </label>
+            <textarea class="form-control" rows="3" formControlName="note"
+              [class.is-invalid]="isSubmitted && myFormData.note.errors"></textarea>
+            <div class="invalid-feedback">
+              {{ getErrorMessage('note') }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row" [hidden]="otpSent" *ngIf="serviceType == 'Second-Opinion'">
+          <div class="form-group col-md-6" >
+            <label class="mt-3 mr-3">Doctors Panel : </label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="indian_panel" value="Indian Panel" class="custom-control-input" formControlName="doctorPanel">
+              <label class="custom-control-label" for="indian_panel"> Indian Panel </label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="us_panel" value="US Panel" class="custom-control-input" formControlName="doctorPanel">
+                <label class="custom-control-label" for="us_panel"> US Panel </label>
+            </div>
+          </div>
+        </div>
+        <div class="row" [hidden]="otpSent" *ngIf="serviceType == 'Second-Opinion'">
+          <div class="form-group col-md-6">
+            <div class=" input-group ">
+              <label for="medical_report">Upload Medical Reports : </label>
+              <input type="file" id="medical_report" multiple (change)="onFilesChanged($event)" >
+            </div>
+          </div>
+        </div>
+
+      <div class="row" *ngIf="otpSent">
+        <div class="form-group col-sm-12" >
+          <label class="control-label">Please enter OTP sent to your mobile number : </label>
+          <input type="text"  
+          class="form-control input-highlight" formControlName="otp" 
+          [class.is-invalid]="isSubmitted && inValidOtp"/>
+          <div class="invalid-feedback" *ngIf="inValidOtp">
+            {{ "You entered invalid OTP." }}
+          </div>
+
+          <a href="javascript:void(0)" (click)="onSubmit('getOtp')">Resend OTP</a>
+        </div>
+      </div>
+
+        <!-- <button class="btn btn-light float-right" routerLink="/patient/family-members">Cancel</button> -->
+        <button type="button" *ngIf="!otpSent" class="btn btn-primary mr-2 float-right" (click)="onSubmit('getOtp')" >Get OTP</button>
+        <button type="button" *ngIf="otpSent" class="btn btn-default mr-2 float-right" (click)="otpSent=false" >Go Back</button>
+        <button type="button" *ngIf="otpSent" class="btn btn-primary mr-2 float-right" (click)="onSubmit('verifyOtp')" >Send Request</button>
+
+
+       </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>

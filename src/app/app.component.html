@@ -1,0 +1,14 @@
+<!-- Wrapper Start -->
+<div [class.wrapper]="!isLoginRoute()">
+  <app-sidenav *ngIf="loadSidebarMenu()"></app-sidenav>
+  <!-- Page Content  -->
+  <div id="content-page" [class.content-page]="!isLoginRoute()">
+    <app-header *ngIf="loadHeaderMenu()"></app-header>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Loaders -->
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Please wait... </p>  
+</ngx-spinner>

@@ -1,0 +1,203 @@
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-sm-12 col-lg-12">
+          <div class="iq-card">
+             <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                   <h4 class="card-title">Profile Details</h4>
+                </div>
+             </div>
+             <div class="iq-card-body">
+                <form class="form" [formGroup]="myProfileForm" (ngSubmit)="onSubmit()" novalidate>
+
+                  <div class="row" >
+                     <div class="col-sm-12">
+                         <div class="col-md-12 p-0">
+                            
+                          <div class="row">
+                            
+                              <div class="col-md-3 text-center" >
+                                <div class="form-group">
+                                  <div class="add-img-user profile-img-edit">
+                                    <img class="profile-pic img-fluid" alt="profile-pic"
+                                    [src]="profileImageUrl" onerror="this.src='assets/images/user/default.jpg';"
+                                    />
+                                    <div class="p-image">
+                                      <label for="profileImgFile" class="custom-file-upload btn btn-primary" style="font-size: 12px;" >
+                                        Upload Profile Photo
+                                      </label>
+                                      <input #profileImgFileInput id="profileImgFile" class="file-upload" type="file" accept="image/*" (change)="onFileChange($event)" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                                                            
+                              <div  class="col-md-8">
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="firstName" 
+                                    [class.is-invalid]="isSubmitted && myProfileFormData.firstName.errors" />
+                                    <div class="invalid-feedback">
+                                        {{ getErrorMessage('firstName') }}
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="lastName" 
+                                    [class.is-invalid]="isSubmitted && myProfileFormData.lastName.errors" />
+                                    <div class="invalid-feedback">
+                                        {{ getErrorMessage('lastName') }}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label">Email </label>
+                                    <input type="email" readonly class="form-control" formControlName="email"
+                                    [class.is-invalid]="isSubmitted && myProfileFormData.email.errors" />
+                                    <div class="invalid-feedback" >
+                                        {{ getErrorMessage('email') }}
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label">Contact No <span class="text-danger">*</span></label>
+                                    <input type="text" [pattern]="mobNumberPattern" class="form-control" formControlName="contactNumber"
+                                    [class.is-invalid]="isSubmitted && myProfileFormData.contactNumber.errors" />
+                                    <div class="invalid-feedback" >
+                                        {{ getErrorMessage('contactNumber') }}
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+          
+  
+                            </div>
+                            
+  
+                            <div class="row" >
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Address Line 1 <span class="text-danger">*</span></label>
+                                <textarea class="form-control" rows="3" formControlName="street1"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.street1.errors"></textarea>
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('street1') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Address Line 2</label>
+                                <textarea class="form-control" rows="3" formControlName="street2"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.street2.errors"></textarea>
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('street2') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="control-label">City <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="city"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.city.errors" />
+                                <div class="invalid-feedback" >
+                                    {{ getErrorMessage('city') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="control-label">State <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="state"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.state.errors" />
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('state') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Postal Code <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="postalCode"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.postalCode.errors" />
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('postalCode') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Country <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="country"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.country.errors" />
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('country') }}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="row">
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Birth Date <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" formControlName="dob"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.dob.errors" />
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('dob') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label>Gender:</label>
+                                <select class="form-control" id="gender" formControlName="gender"
+                                  [ngClass]="{ 'is-invalid': isSubmitted && myProfileFormData.gender.errors }" >
+                                  <option value="" disabled>Select Gender</option>
+                                  <option>Male</option>
+                                  <option>Female</option>
+                                  <option>Other</option>
+                                </select>
+                                <div class="invalid-feedback" >
+                                  {{ getErrorMessage('gender') }}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Weight <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="weight" 
+                                [class.is-invalid]="isSubmitted && myProfileFormData.weight.errors"
+                                />
+                                <div class="invalid-feedback">
+                                  {{ getErrorMessage('weight') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                  <label class="control-label">Height <span class="text-danger">*</span></label>
+                                  <input type="text" class="form-control" formControlName="height" 
+                                  [class.is-invalid]="isSubmitted && myProfileFormData.height.errors"
+                                  />
+                                  <div class="invalid-feedback">
+                                    {{ getErrorMessage('height') }}
+                                  </div>
+                              </div>
+                            </div>
+  
+                            <div class="row">
+                              <div class="form-group col-md-6">
+                                <label class="control-label">Nationality <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="nationality"
+                                [class.is-invalid]="isSubmitted && myProfileFormData.nationality.errors" />
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('nationality') }}
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                  <label class="control-label">Occupation <span class="text-danger">*</span></label>
+                                  <input type="text" class="form-control" formControlName="occupation"
+                                  [class.is-invalid]="isSubmitted && myProfileFormData.occupation.errors" />
+                                  <div class="invalid-feedback">
+                                    {{ getErrorMessage('occupation') }}
+                                  </div>
+                              </div>
+                            </div>
+                            <button class="btn btn-light float-right" routerLink="/patient/home">Cancel</button>
+                            <button type="submit" class="btn btn-primary mr-2 float-right" >Save</button>
+                         </div>
+                      </div>
+                   </div>
+                </form>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>

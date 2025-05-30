@@ -1,0 +1,18 @@
+.cm-breadcrumb {
+  background: #18375c;
+  border-radius: 25px;
+}
+
+.cm-cancel-button {
+  color: #18375c;
+  border: 1px solid #18375c !important;
+  background: transparent;
+  margin-right: 15px;
+}
+
+.cm-doc-upload-btn {
+  font-size: 12px;
+  height: 30px;
+  margin-top: 8px;
+  margin-left: 10px;
+}

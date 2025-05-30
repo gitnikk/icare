@@ -1,0 +1,8 @@
+.main-app-div {
+  height: 100%;
+  min-width: calc(100vw - 260px);
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  margin-top: 110px;
+}

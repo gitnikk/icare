@@ -1,0 +1,14 @@
+<div class="alert-box">
+  <div class="modal-header">
+      <h4 class="modal-title">{{prompt.title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="_bsModalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    {{prompt.message}}
+  </div>
+  <div class="modal-footer">
+      <button type="button" [class]="btn.class" (click)="performAction(btn.action)" *ngFor="let btn of prompt.buttons">{{btn.action}}</button>
+  </div>
+</div>

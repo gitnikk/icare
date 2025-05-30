@@ -1,0 +1,59 @@
+<!-- Sign in Start -->
+<section class="sign-in-page">
+  <div class="container sign-in-page-bg mt-5 p-0">
+      <div class="row no-gutters">
+          <div class="col-md-6 text-center">
+              <div class="sign-in-detail text-white">
+                  <a class="sign-in-logo mb-5" href="#"><img src="./assets/images/logo-white.png" class="img-fluid" alt="logo"></a>
+                  <owl-carousel [options]="CarouselOptions" [items]="sliderData" [carouselClasses]="['owl-carousel']" >  
+                    <div class="item" *ngFor="let data of sliderData">  
+                        <img src={{data.img}} class="img-fluid mb-4" alt="logo"/>  
+                        <h4 class="mb-1 text-white">{{data.title}}</h4>
+                        <p>{{data.description}}</p>
+                    </div> 
+                  </owl-carousel>
+              </div>
+          </div>
+          <div class="col-md-6 position-relative">
+              <div class="sign-in-from">
+                  <h1 class="mb-0">Sign in</h1>
+                  <p>Enter your email address and password to access admin panel.</p>
+                  <form class="mt-4" [formGroup]="signInForm" (ngSubmit)="onSubmit()" novalidate>
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" [ngClass]="{ 'is-invalid': isSubmitted && signInFormData.email.errors }" class="form-control mb-0 is-invalid" formControlName="email" placeholder="Enter email">
+                          <div class="invalid-feedback" *ngIf="signInFormData.email.errors">
+                            {{ getErrorMessage('email') }}
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <!-- <a routerLink="/forgot-password" href="#" class="float-right">Forgot password?</a> -->
+                          <input type="password" [ngClass]="{ 'is-invalid': isSubmitted && signInFormData.password.errors }" class="form-control mb-0" formControlName="password" placeholder="Password">
+                          <div class="invalid-feedback" *ngIf="signInFormData.password.errors">
+                            {{ getErrorMessage('password') }}
+                          </div>
+                      </div>
+                      <div class="d-inline-block w-100">
+                          <div class="d-inline-block pt-1">
+                              <!-- <input type="checkbox" class="custom-control-input" id="customCheck1"> -->
+                              <!-- <label class="custom-control-label" for="customCheck1">Remember Me</label> -->
+                              <span class="dark-color d-inline-block"><a href="#" routerLink="/forgot-password">Forgot password?</a></span>
+                          </div>
+                          <button type="submit" class="btn btn-primary float-right" >Sign in</button>
+                      </div>
+                      <div class="sign-info">
+                          <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="#" routerLink="/patient-signup">Sign up</a></span>
+                          <!-- <ul class="iq-social-media">
+                              <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                              <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                              <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                          </ul> -->
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Sign in END -->

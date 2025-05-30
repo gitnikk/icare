@@ -1,0 +1,114 @@
+<div class="iq-sidebar">
+  <div class="iq-sidebar-logo d-flex justify-content-between">
+    <a routerLink="/">
+      <img
+        src="../../../assets/images/yCare Logo.png"
+        class="img-fluid"
+        alt=""
+      />
+    </a>
+    <div class="iq-menu-bt-sidebar">
+      <div class="iq-menu-bt align-self-center">
+        <div class="wrapper-menu">
+          <div class="main-circle"><i class="ri-more-fill"></i></div>
+          <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-scrollbar">
+    <!-- Admin Menu : (s) -->
+    <nav class="iq-sidebar-menu" *ngIf="sessionService.isUserAdmin()">
+      <ul id="iq-sidebar-toggle" class="iq-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/admin/dashboard" class="iq-waves-effect"
+            ><i class="ri-home-4-line"></i><span>Dashboard</span></a
+          >
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/admin/cases" class="iq-waves-effect"
+            ><i class="ri-file-list-3-line"></i><span>Case List</span></a
+          >
+        </li>
+        <li routerLinkActive="active"
+          [ngClass]="{ active: router.url === '/admin/onboard-caremanager' }" >
+          <a routerLink="/admin/caremanagers" class="iq-waves-effect">
+            <i class="ri-group-fill"></i><span>Care Manager List</span>
+          </a>
+        </li>
+        <li routerLinkActive="active"
+          [ngClass]="{ active: router.url === '/admin/onboard-doctor' }">
+          <a routerLink="/admin/doctors" class="iq-waves-effect">
+            <i class="ri-group-fill"></i><span>Doctors List</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/admin/earning-management" class="iq-waves-effect">
+            <i class="ri-file-list-line"></i><span>Payment</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Admin Menu : (e) -->
+
+    <!-- Caremanager Menu : (s) -->
+    <nav class="iq-sidebar-menu" *ngIf="sessionService.isUserCM()">
+      <ul id="iq-sidebar-toggle" class="iq-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/caremanager/home" class="iq-waves-effect">
+            <i class="ri-home-4-line"></i><span>Home</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/caremanager/cases" class="iq-waves-effect" >
+            <i class="ri-file-list-3-line"></i><span>Case List</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Caremanager Menu : (e) -->
+
+    <!-- Doctor Menu : (s) -->
+    <nav class="iq-sidebar-menu" *ngIf="sessionService.isUserDoctor()">
+      <ul id="iq-sidebar-toggle" class="iq-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/doctor/home" class="iq-waves-effect">
+            <i class="ri-home-4-line"></i><span>Home</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/doctor/cases" class="iq-waves-effect">
+            <i class="ri-file-list-3-line"></i><span>Case List</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Doctor Menu : (e) -->
+
+    <!-- Patient Menu : (s) -->
+    <nav class="iq-sidebar-menu" *ngIf="sessionService.isUserPatient()">
+      <ul id="iq-sidebar-toggle" class="iq-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/patient/home" class="iq-waves-effect">
+            <i class="ri-home-4-line"></i><span>Home</span>
+          </a>
+        </li>
+        <li routerLinkActive="active"
+          [ngClass]="{ active: router.url === '/patient/create-case' }">
+          <a routerLink="/patient/cases" class="iq-waves-effect"
+            ><i class="ri-file-list-3-line"></i><span>Case List</span></a
+          >
+        </li>
+        <li routerLinkActive="active" 
+          [ngClass]="{ active: router.url ===  '/patient/member-form' }">
+          <a routerLink="/patient/family-members" class="iq-waves-effect">
+            <i class="ri-shield-user-line"></i><span>Family Members</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Doctor Menu : (e) -->
+    
+    <div class="p-3"></div>
+  </div>
+</div>

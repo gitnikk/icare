@@ -1,0 +1,121 @@
+{
+  "caseType": "Outpatient",
+  "categoryName": "Cardiology1",
+  "subCategoryName": "subcategory11",
+  "firstName": "Sanket",
+  "lastName": "Dikshit",
+  "email": "rock@gmail.com",
+  "contactNumber": null,
+  "password": null,
+  "address": {
+    "street1": "pune",
+    "street2": "pune1",
+    "city": "pune",
+    "state": "maharashtra",
+    "postalcode": null,
+    "country": "India"
+  },
+  "age": 20,
+  "gender": "Male",
+  "weight": "65",
+  "height": "5.5",
+  "nationality": "Indian",
+  "occupation": "Software Engg",
+  "socialHistory": {
+    "id": null,
+    "maritalStatus": "married",
+    "children": "10",
+    "smokingHabit": false,
+    "smokingType": "NA",
+    "smokingFrequency": "NA",
+    "smokingPeriod": "NA",
+    "alcoholConsumption": false,
+    "alcoholType": "NA",
+    "alcoholFrequency": "NA",
+    "alcoholPeriod": "NA",
+    "prescribedDrugFile": [
+      "dev/CASE000039/prescribedDrugFile/keyboard.jpeg"
+    ],
+    "diet": "Veg",
+    "travelHistory": "NA"
+  },
+  "familyHistory": {
+    "id": null,
+    "maternal": "NA",
+    "paternal": "paternal",
+    "sibling": "siblings",
+    "allergies": "NA"
+  },
+  "pastHistoryOfMajorillness": {
+    "answer": "",
+    "uploadReports": [
+      "dev/CASE000041/pastHistoryofMajorillness/keyboard.jpeg"
+    ]
+  },
+  "anySurgicalHistory": {
+    "answer": "",
+    "uploadReports": []
+  },
+  "presentHealthComplaints": {
+    "answer": "",
+    "uploadReports": [
+      "dev/CASE000041/pastHistoryofMajorillness/keyboard.jpeg"
+    ]
+  },
+  "questionnaire": [
+    {
+      "id": "5f5w2432328a6c905af9c232323c261",
+      "question": "Are you observing loss of sensation in the limbs?",
+      "controlType": "text",
+      "mandatory": true,
+      "options": [
+        {
+          "value": "Answer"
+        }
+      ],
+      "givenAnswer": "jlasdf asdlf sd"
+    },
+    {
+      "id": "5f55cdd3238238a6c9052323f9cc261",
+      "question": "Are you observing loss of sensation in the limbs?",
+      "controlType": "text",
+      "mandatory": true,
+      "options": [
+        {
+          "value": "Answer"
+        }
+      ],
+      "givenAnswer": "jlasdf asdlf sd"
+    },
+    {
+      "id": "5f55cdd223235456a6c905af32323543459cc261",
+      "question": "Are you observing loss of sensation in the limbs?",
+      "controlType": "text",
+      "mandatory": true,
+      "options": [
+        {
+          "value": "Answer"
+        }
+      ],
+      "givenAnswer": "jlasdf asdlf sd"
+    }
+  ],
+  "createDateTime": null,
+  "updateDateTime": null,
+  "doctorsPanel": "India",
+  "typeOfConsultation": "Without Tele-Conferencing",
+  "consultations": [
+    {
+      "observation": "observation message",
+      "observationBy": "Name of commentor, 02/05/2020"
+    },
+    {
+      "observation": "observation message",
+      "observationBy": "Name of commentor, 02/05/2020"
+    },
+    {
+      "observation": "observation message",
+      "observationBy": "Name of commentor, 02/05/2020"
+    }
+  ]
+}

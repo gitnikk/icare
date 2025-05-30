@@ -1,0 +1,15 @@
+.no-padding {
+  padding: 0;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.rounded {
+  border-radius: 25px !important;
+}
+
+.padding-40 {
+  padding: 40px;
+}

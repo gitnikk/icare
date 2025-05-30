@@ -1,0 +1,69 @@
+<!-- Sign in Start -->
+<section class="sign-in-page">
+    <div class="container sign-in-page-bg mt-5 p-0">
+        <div class="row no-gutters">
+            <div class="col-md-6 text-center">
+                <div class="sign-in-detail text-white">
+                    <a class="sign-in-logo mb-5" href="#"><img src="./assets/images/logo-white.png" class="img-fluid" alt="logo"></a>
+                    <owl-carousel [options]="CarouselOptions" [items]="sliderData" [carouselClasses]="['owl-carousel']" >  
+                      <div class="item" *ngFor="let data of sliderData">  
+                          <img src={{data.img}} class="img-fluid mb-4" alt="logo"/>  
+                          <h4 class="mb-1 text-white">{{data.title}}</h4>
+                          <p>{{data.description}}</p>
+                      </div> 
+                    </owl-carousel>
+                </div>
+            </div>
+            <div class="col-md-6 position-relative">
+                <div class="sign-in-from" [ngSwitch]="mode">
+                    <!-- Set user password form: s -->
+                    <div *ngSwitchCase="'resetPassword'">
+                        <h1 class="mb-0">Set New Password</h1>
+                        <!-- <p>Activate your account by setting password.</p> -->
+                        <form class="mt-4" [formGroup]="setPasswordForm" (ngSubmit)="handleResetPassword()" novalidate>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <!-- <a href="#" class="float-right">Forgot password?</a> -->
+                                <input type="password" [ngClass]="{ 'is-invalid': isSubmitted && setPasswordFormData.password.errors }" class="form-control mb-0" formControlName="password" placeholder="Password">
+                                <div class="invalid-feedback" *ngIf="setPasswordFormData.password.errors">
+                                {{ getErrorMessage('password') }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" [ngClass]="{ 'is-invalid': isSubmitted && setPasswordFormData.confirmPassword.errors }" class="form-control mb-0" formControlName="confirmPassword" placeholder="Confirm Password">
+                                <div class="invalid-feedback" *ngIf="setPasswordFormData.confirmPassword.errors">
+                                {{ getErrorMessage('confirmPassword') }}
+                                </div>
+                            </div>
+                            <div class="d-inline-block w-100">
+                                <div class=" d-inline-block pt-1">
+                                    <span class="dark-color d-inline-block">Already have an account? <a href="#" routerLink="/signin">Sign in</a></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right" >Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Verify email message -->
+                    <div class="mt-4" *ngSwitchCase="'verifyEmail'">
+                        <h1 class="mb-0">{{ title }}</h1>
+                        <p>{{ message }}</p>
+                        <div class="d-inline-block w-100">
+                            <button routerLink="/signin" type="button" class="btn btn-primary" >Sign In</button>
+                        </div>
+                    </div>
+                    <!-- Invalid or expired link -->
+                    <div  class="mt-4" *ngSwitchDefault>
+                        <h1 class="mb-0">Invalid Link</h1>
+                        <p>The link you are trying to access is either expired or invalid, please contact to admin.</p>
+                        <div class="d-inline-block w-100">
+                            <button  routerLink="/signin" type="button" class="btn btn-primary" >Sign In</button>
+                        </div>
+                    </div>
+                </div>
+  
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- Sign in END -->

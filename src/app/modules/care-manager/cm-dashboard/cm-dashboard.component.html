@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-lg-3">
+       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+          <div class="iq-card-body iq-bg-primary rounded">
+             <div class="d-flex align-items-center justify-content-between">
+                <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-user-fill"></i></div>
+                <div class="text-right">                                 
+                   <h2 class="mb-0"><span class="counter">{{activeCasesCount}}</span></h2>
+                   <h5 class="">Active Cases</h5>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+   
+    
+    
+ </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="iq-card">
+        <div class="iq-card-header d-flex justify-content-between">
+          <div class="iq-header-title">
+            <h4 class="card-title">Case List</h4>
+          </div>
+          
+        </div>
+        <div class="iq-card-body">
+          <div class="iq-search-bar table-search-bar">
+            <div class="searchbox mb-2">
+              <input
+                type="text"
+                class="text search-input"
+                placeholder="Type here to search..."
+              />
+              <span class="search-link"><i class="ri-search-line"></i></span>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr >
+                        <th role='button' (click)="sort('id')" >Case Id
+                          <i class="fa sort-icon" 
+                                *ngIf="sortBy =='id'"
+                                [ngClass]="{'fa-angle-up':sortOrder=='DESC','fa-angle-down':sortOrder=='ASC'}">
+                          </i>
+                        </th>
+                        <th >Service Category</th>
+                        <th >Patient</th>
+                        <th >Care Manager</th>
+                        <th >Doctor</th>
+                        <th >Status</th>
+                        <th >Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let case of caseList; let i=index">
+                        <td >{{case.id}}</td>
+                        <td >{{case.categoryName}}</td>
+                        <td >{{case.patientName}}</td>
+                        <td >{{case.caremanagerName}}</td>
+                        <td >{{case.doctorName}}</td>
+                        <td >{{case.status}}</td>
+                        <td >
+                          <a [routerLink]="['/caremanager/case-details', case.id]" tooltip="View/Edit" placement="top" >
+                            <i class="ri-file-edit-line font-size-24"></i>
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" [pageSize]="20" [length]="totalElements"
+                (page)="nextPage($event)">
+            </mat-paginator>
+        </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

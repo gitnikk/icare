@@ -1,0 +1,59 @@
+/* normal step */
+.wizard-step a i {
+    background: #eff7f8;
+    color: #FF7404;
+}
+
+/* valid step */
+.wizard-step.step-valid a.btn  {
+    background: #eefff2;
+    border-color: #27b345;
+    color: #374948;
+}
+.wizard-step.step-valid a i  {
+    color: #27b345;
+    background: #ffffff;
+}
+
+
+/* active step */
+.wizard-step.active a.btn  {
+    background: #18375c;
+    border-color: #18375c;
+    color: #eff7f8;
+}
+.wizard-step.active a i  {
+    color: #FF7404;
+}
+
+.userProfile {
+    border-radius: 50%;
+    height: 80%;
+    width: auto;
+}
+.pullBottom {
+    position: absolute;
+    bottom: 0;
+}
+.iq-bg-white {
+    background: #ffffff;
+    border:1px solid #18375c; 
+}
+.iq-bg-white.selectedTab {
+    background: #18375c;
+}
+.iq-bg-white.selectedTab h3,.iq-bg-white.selectedTab h5 {
+    color: #ffffff;
+}
+.custom-control{
+    min-height: 2.5rem;
+}
+.noLabelClass{
+    display: block;
+    cursor: pointer;
+}
+
+textarea.form-control {
+    line-height: 1.7rem;
+}
+

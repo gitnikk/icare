@@ -1,0 +1,201 @@
+<div class="container-fluid">
+  <div class="row">
+     <div class="col-sm-12 col-lg-12">
+        <div class="iq-card">
+           <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                 <h4 class="card-title">Case Details</h4>
+              </div>
+           </div>
+           <div class="iq-card-body">
+            <dl class="row">
+               <dt class="col-sm-3">Case ID: </dt>
+               <dd class="col-sm-3">{{ caseDetails.id }}</dd>
+               <dt class="col-sm-2">Patient Name: </dt>
+               <dd class="col-sm-3">{{ caseDetails.patientName }}</dd>
+               <dt class="col-sm-3">Service Category: </dt>
+               <dd class="col-sm-3">{{ caseDetails.categoryName }}</dd>
+               <dt class="col-sm-2">Sub Category:</dt>
+               <dd class="col-sm-4">{{ caseDetails.subCategoryName }}</dd>
+               <dt class="col-sm-3">Symptoms:</dt>
+               <dd class="col-sm-9">{{ (caseDetails.presentHealthComplaints != null) ? caseDetails.presentHealthComplaints.answer : "-" }}</dd>
+               <!-- <dt class="col-sm-3">Created on : </dt>
+               <dd class="col-sm-9">{{ caseDetails.createDateTime }}</dd> -->
+            </dl>
+         </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+     <div class="col-md-6">
+        <div class="iq-card">
+           <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                 <h4 class="card-title">Care Manager</h4>
+              </div>
+              <div class="iq-card-header-toolbar d-flex align-items-center" *ngIf="assignedCM">
+               <button class="btn mr-2" (click)="resetCm()">Reset</button> 
+               <button class="btn btn-primary btn-sm" (click)="openModal(cmModal)"> Change </button>
+              </div>
+           </div>
+           <div class="iq-card-body">
+            <!-- Button to assign new CM : (s) -->
+            <div class="col-md-8 offset-md-2" *ngIf="!assignedCM; else showCM">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                  <div class="iq-card-body iq-bg-primary rounded" (click)="openModal(cmModal)">
+                     <div class="d-flex align-items-center justify-content-between" >
+                        <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-women-fill"></i></div>
+                        <div class="text-right">                                 
+                           <h6 class="mb-0"><span class="counter">Assign</span></h6>
+                           <h4 class="">Care Manager</h4>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Button to assign new CM : (e) -->
+
+            <!-- View assigned CM : (s) -->
+            <ng-template #showCM>
+               <dl class="row">
+                  <dt class="col-sm-3">Name: </dt>
+                  <dd class="col-sm-9">{{assignedCM.firstName}} {{assignedCM.lastName}}</dd>
+                  <dt class="col-sm-3">Experience: </dt>
+                  <dd class="col-sm-9">{{assignedCM.experience}}</dd>
+                  <dt class="col-sm-3">Specialization:</dt>
+                  <dd class="col-sm-9">{{assignedCM.speciality}}</dd>
+               </dl>
+            </ng-template>
+            <!-- View assigned CM : (s) -->
+
+         </div>
+        </div>
+     </div>
+
+     <div class="col-md-6">
+      <div class="iq-card">
+         <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+               <h4 class="card-title">Doctor</h4>
+            </div>
+            <div class="iq-card-header-toolbar d-flex align-items-center" *ngIf="assignedDoctor">
+               <button class="btn mr-2" (click)="resetDoctor()">Reset</button>
+               <button class="btn btn-primary btn-sm" (click)="openModal(doctorModal)"> Change </button>
+            </div>
+         </div>
+         <div class="iq-card-body">
+            <!-- Button to assign new Doctor : (s) -->
+            <div class="col-md-8 offset-md-2" *ngIf="!assignedDoctor; else showDoctor">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                  <div class="iq-card-body iq-bg-primary rounded" (click)="openModal(doctorModal)">
+                     <div class="d-flex align-items-center justify-content-between" >
+                        <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-women-fill"></i></div>
+                        <div class="text-right">                                 
+                           <h6 class="mb-0"><span class="counter">Assign</span></h6>
+                           <h4 class="">Doctor</h4>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Button to assign new Doctor : (e) -->
+
+            <!-- View assigned Doctor : (s) -->
+            <ng-template #showDoctor>
+               <dl class="row">
+                  <dt class="col-sm-3">Name: </dt>
+                  <dd class="col-sm-9">{{assignedDoctor.firstName}} {{assignedDoctor.lastName}}</dd>
+                  <dt class="col-sm-3">Experience: </dt>
+                  <dd class="col-sm-9">{{assignedDoctor.experience}}</dd>
+                  <dt class="col-sm-3">Specialization:</dt>
+                  <dd class="col-sm-9">{{assignedDoctor.speciality}}</dd>
+               </dl>
+            </ng-template>
+            <!-- View assigned Doctor : (s) -->
+
+         </div>
+      </div>
+   </div>
+  </div>
+
+  <div class="row">
+     <div class="col-md-12">
+      <button type="button" class="btn mb-3 btn-primary pull-right" routerLink="/admin/cases"><i class="ri-arrow-left-s-fill"></i>Go to Case List</button>
+     </div>
+  </div>
+</div>
+
+
+
+
+<!-- POPUP Modal for CM list : (s) -->
+<ng-template #cmModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Choose Care Manager</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <table class="table table-striped table-bordered">
+      <tr>
+        <th>Sr. No. </th>
+        <th>Name </th>
+        <th>Specialization </th>
+        <th>Experience </th>
+        <th>Active Cases </th>
+      </tr>
+      <tr *ngFor="let cm of caremanagers; let i=index" >
+        <td><input type="radio" [(ngModel)]="selectedCM" [value]="cm" id="cm{{i}}" class="mr-2" />{{i+1}}</td>
+        <td >{{cm.firstName}} {{cm.lastName}}</td>
+        <td>{{cm.speciality}}</td>
+        <td>{{cm.experience}}</td>
+        <td>{{cm.caseCount}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+   <button class="btn mr-2" (click)="closeModal()">Cancel</button>
+   <button class="btn btn-primary" (click)="assignCM()">Save</button>
+ </div>
+</ng-template>
+<!-- POPUP Modal for CM list : (e) -->
+
+
+<!-- POPUP Modal for Doctors list : (s) -->
+<ng-template #doctorModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Choose Doctor</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped table-bordered">
+      <tr>
+        <th>Sr. No.</th>
+        <th>Name </th>
+        <th>Specialization </th>
+        <th>Experience </th>
+        <th>Active Cases </th>
+      </tr>
+      <tr *ngFor="let doctor of doctors; let i=index" >
+        <td><input type="radio" [(ngModel)]="selectedDoctor" [value]="doctor" id="doctor{{i}}" class="mr-2" />{{i+1}}</td>
+        <td >{{doctor.firstName}} {{doctor.lastName}}</td>
+        <td>{{doctor.speciality}}</td>
+        <td>{{doctor.experience}}</td>
+        <td>{{doctor.caseCount}}</td>
+      </tr>
+    </table>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn mr-2" (click)="closeModal()">Cancel</button>
+    <button class="btn btn-primary" (click)="assignDoctor()">Save</button>
+  </div>
+</ng-template>
+<!-- POPUP Modal for Doctors list : (e) -->

@@ -1,0 +1,256 @@
+<div class="col-lg-12">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="iq-card">
+        <div class="iq-card-header d-flex justify-content-between">
+          <div class="iq-header-title">
+            <h4 class="card-title">Onboard Doctor</h4>
+          </div>
+        </div>
+        <div class="iq-card-body">
+          <div class="new-user-info">
+            <form [formGroup]="onBoardDoctorForm" novalidate>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="firstName">First Name <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder="First Name"
+                    formControlName="firstName"
+                    pattern="^[A-Za-z]+(?:[ '-][A-Za-z]+)?$"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.firstName.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.firstName.errors">
+                    {{ getErrorMessage('firstName') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="lastName">Last Name <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                    pattern="^[A-Za-z]+(?:[ '-][A-Za-z]+)?$"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.lastName.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.lastName.errors">
+                    {{ getErrorMessage('lastName') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Gender <span class="text-danger">*</span></label>
+                  <select
+                    class="form-control"
+                    id="gender"
+                    formControlName="gender"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.gender.errors }"
+                  >
+                  <option value="" disabled>Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.gender.errors">
+                    {{ getErrorMessage('gender') }}
+                  </div>
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label class="control-label">Birth Date <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" formControlName="dob"
+                  [class.is-invalid]="isSubmitted && onBoardDoctorFormData.dob.errors" />
+                  <div class="invalid-feedback">
+                      {{ getErrorMessage('dob') }}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="contactNumber">Contact Number <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contactNumber"
+                    placeholder="Contact Number"
+                    formControlName="contactNumber"
+                    [pattern]="mobNumberPattern"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.contactNumber.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.contactNumber.errors">
+                    {{ getErrorMessage('contactNumber') }}
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="emailId">Email Id <span class="text-danger">*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="emailId"
+                    placeholder="Email Id"
+                    formControlName="emailId"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.emailId.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.emailId.errors">
+                    {{ getErrorMessage('emailId') }}
+                  </div>
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label class="control-label">Address Line 1 <span class="text-danger">*</span></label>
+                  <textarea class="form-control" rows="3" formControlName="street1"
+                  [class.is-invalid]="isSubmitted && onBoardDoctorFormData.street1.errors"></textarea>
+                  <div class="invalid-feedback">
+                      {{ getErrorMessage('street1') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label class="control-label">Address Line 2</label>
+                  <textarea class="form-control" rows="3" formControlName="street2"
+                  [class.is-invalid]="isSubmitted && onBoardDoctorFormData.street2.errors"></textarea>
+                  <div class="invalid-feedback">
+                      {{ getErrorMessage('street2') }}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="city">City <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    placeholder="City"
+                    formControlName="city"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.city.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.city.errors">
+                    {{ getErrorMessage('city') }}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="state">State <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="state"
+                    placeholder="State"
+                    formControlName="state"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.state.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.state.errors">
+                    {{ getErrorMessage('state') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="country">Country <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="country"
+                    placeholder="Country"
+                    formControlName="country"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.country.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.country.errors">
+                    {{ getErrorMessage('country') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="postalCode">Pin Code <span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="postalCode"
+                    placeholder="Pin Code"
+                    formControlName="postalCode"
+                    [ngClass]="{ 'is-invalid': isSubmitted && onBoardDoctorFormData.postalCode.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="onBoardDoctorFormData.postalCode.errors">
+                    {{ getErrorMessage('postalCode') }}
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <h4 class="mb-4 mt-4">Work Experience and Specialization:</h4>
+
+            <form [formGroup]="workform" novalidate>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Category <span class="text-danger">*</span></label>
+                  <select class="form-control" id="category" 
+                    formControlName="category" 
+                    (change)="getSubCategory(workFormData.category)"
+                    [ngClass]="{ 'is-invalid': isSubmitted && workFormData.category.errors }"
+                    >
+                      <option value="" disabled>Select Category</option>
+                      <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+                  </select>
+                  
+                  <div class="invalid-feedback" *ngIf="workFormData.category.errors">
+                    {{ getErrorMessage('category') }}
+                  </div>
+
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Sub-Category <span class="text-danger">*</span></label>
+                  <select class="form-control" id="subcategory" 
+                    formControlName="subcategory"
+                    [ngClass]="{ 'is-invalid': isSubmitted && workFormData.subcategory.errors }">
+                    <option value="" disabled>Select Sub-Category</option>
+                    <option *ngFor="let subCategory of subCategories" [value]="subCategory.name">{{subCategory.name}}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="workFormData.subcategory.errors">
+                    {{ getErrorMessage('subcategory') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Work Experience </label>
+                  <select
+                    class="form-control"
+                    id="workexperience"
+                    formControlName="workexperience"
+                    [ngClass]="{ 'is-invalid': isSubmitted && workFormData.workexperience.errors }"
+                  >
+                    <option value="">Select Experience</option>
+                    <option value="5">5 years</option>
+                    <option value="10">10 years</option>
+                    <option value="15">15 years</option>
+                    <option value="20">20 years</option>
+                    <option value="25">25 years</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="workFormData.workexperience.errors">
+                    {{ getErrorMessage('workexperience') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="skillset">Skillsets </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="skillset"
+                    placeholder="Skillsets"
+                    formControlName="skillset"
+                    [ngClass]="{ 'is-invalid': isSubmitted && workFormData.skillset.errors }"
+                  />
+                  <div class="invalid-feedback" *ngIf="workFormData.skillset.errors">
+                    {{ getErrorMessage('skillset') }}
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary float-right" (click)="submitOnboardForm()" >Onboard Doctor</button>
+                  <button type="button" routerLink="/admin/doctors" class="btn btn-light float-right mr-3" >Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>   
+    
+  </div>
+</div>
